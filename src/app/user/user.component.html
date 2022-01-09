@@ -1,0 +1,60 @@
+<!--  ************      Injection d'un service     ******************  -->
+
+<div>Date par la variable du service injecté : {{ dateService.dateVariable | date:"long" }}</div>
+<div>Date par la méthode du service injecté : {{ dateService.getDate() | date:"long" }}</div>
+
+
+<p>Hello to you !</p>
+
+
+<!--  ************      Formulaire : variable html (sans lien avec .ts)    ******************  -->
+
+<input #variableHtml value="password" (keyup)="0">
+<div>Your are typing : 
+    <span class="inputvalue" [ngClass]="(variableHtml.value.length < 8) ? 'mdpTooShortCSS': 'mdpSecureLengthCSS'">
+        ({{variableHtml.value.length}} char) {{variableHtml.value}}
+    </span>
+</div>
+<br>
+
+<!--  ************      Formulaire avec 1 et 2 inputs : NgModel et ngSubmit (variable dans .ts)    ******************  -->
+
+<input [(ngModel)]="userTyping">
+<div>Your are typing (simple Form input) : 
+    <span class="inputvalue">{{userTyping}}</span>
+</div>
+<br>
+
+<!-- Nota 
+    ngForm pose problem dans les tests 
+-->
+
+<!-- <form #form="ngForm" (ngSubmit)="addSomeone(form.value)">
+    <input [(ngModel)]="name" name="name" type="text" placeholder="name">
+    <input [(ngModel)]="like" name="like" type="txt" placeholder="like">
+    <button type="submit">Submit</button>
+</form> -->
+
+<div *ngFor="let person of peopleList">{{person.name}} : I like {{ person.like }}</div>
+<br>
+<br>
+
+
+<!--  ************      Formulaire : avec formControl (FormControl dans .ts)    ******************  -->
+
+<input [formControl]="userForm">
+<div>Your are typing (with Rective Form): 
+    <span class="inputvalue">{{userForm.value}}</span>
+</div>
+<br>
+
+
+<!--  ************      Formulaire : avec formGroup (FormGroup et ses FormControl dans .ts)    ******************  -->
+
+<form [formGroup]="userFormGroup" action="">
+    <input formControlName="name" type="text" placeholder="name">
+    <input formControlName="mail" type="text" placeholder="mail">
+    <button (click)="showUserFormGroupData()" type="submit">Submit</button>
+</form>
+<div *ngIf="showUserFormGroup === true">Name: {{name}} / mail {{mail}}</div>
+<br>

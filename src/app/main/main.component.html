@@ -1,0 +1,81 @@
+<p>C'est qui le patron ? C'est {{ master }} ou {{ padawans[2] }}</p>
+
+
+<!--  ************      ngSwitch / ngSwitchCase simples     ******************  -->
+
+<span [ngSwitch]="master">
+    <div *ngSwitchCase="'Momo le Bobo'">Yo, moi c'est toujours Momo le Bobo</div>
+    <div *ngSwitchCase="'Momi le Bobie'">You c'est pas Momo le Bobo</div>
+</span>
+
+
+<!--  ************       ngFor / ngCLass      ******************  -->
+
+<div>C'est qui les cons ?</div>
+<ol>
+    <li *ngFor="let padawan of padawans"> - {{ padawan }}</li>
+</ol>
+
+
+<ul>
+    <li *ngFor="let padawan of padawans" 
+        [ngClass]="{'garycss': padawan === 'Gary'}"> 
+        {{ (padawan == "Gary") ? "Gary" : "pas Gary" }}
+    </li>
+</ul>
+
+
+<!--  ************      ngSwitch / ngSwitchCase avec ngFor     ******************  -->
+
+<ul [ngSwitch]="padawans">
+    <span *ngFor="let padawan of padawans" 
+          [ngClass]="{'garycss': padawan === 'Gary'}">
+
+        <span [ngSwitch]="padawan">
+            <li *ngSwitchCase="'Gary'">Yo, moi c'est Gary, j'i switché tous les autres de la liste</li>
+            <li *ngSwitchCase="'John John'">John John dit : "j'ai survécu"</li>
+        </span>
+
+    </span>
+</ul>
+
+
+
+<!--  ************       ngClass & (click)       ******************  -->
+
+<button (click)="setJourNuit()" data-cy="button1">
+    {{(isNuit) ? "Nuit" : "Jour"}}
+</button>
+
+<span [ngClass]="{'journuitcss': isNuit}" 
+     (click)="setJourNuit()">
+    Jour / nuit
+</span>
+<br>
+<br>
+
+
+<!--  ************       ng-template / ngIf else then       ******************  -->
+
+<button (click)="setJourNuit()">
+    {{(isNuit) ? "Nuit" : "Jour"}}
+</button>
+
+<span *ngIf="isNuit; then nuit; else jour" 
+     (click)="setJourNuit()">
+    N'est jamais affiché
+</span>
+<br>
+
+<ng-template #jour>
+    <span class="classTextButton2">  Il fait jour</span>
+</ng-template>
+
+<ng-template #nuit>
+    <span [ngClass]="{'journuitcss': isNuit}" class="classTextButton2">Il fait nuit</span>
+</ng-template>
+
+
+<!--  ************       Pipe       ******************  -->
+<br>
+<div>Gary est né le {{ birthday | date:"fullDate"}}</div>

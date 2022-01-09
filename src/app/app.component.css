@@ -1,0 +1,20 @@
+.active{
+    font-weight: bolder;
+    color: white;
+    font-size: 22px;
+}
+
+.menu{
+    background-color:rgb(87, 88, 84);
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: start;
+}
+
+a {
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+}

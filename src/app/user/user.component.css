@@ -1,0 +1,11 @@
+.inputvalue{
+    font-style: italic;
+}
+
+.mdpTooShortCSS{
+    color: red;
+}
+
+.mdpSecureLengthCSS{
+    color: green;
+}
